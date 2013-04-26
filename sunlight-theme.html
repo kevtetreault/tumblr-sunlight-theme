@@ -32,14 +32,103 @@
 	<div id="content">
 		{block:Posts}
 		<article>
-			<!-- Post markup goes here -->
+			{block:Text}
+				<div class="text inner">
+				{block:Title}<h1 class="title"><a href="{Permalink}">{Title}</a></h1>{/block:Title}
+				{Body}
+			{block:Text}
+
+			{block:Photo}
+			<div class="photo inner">
+					{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="PhotoAlt" />{LinkCloseTag}
+					{block:Caption}{Caption}{/block:Caption}
+			{/block:Photo}
+
+			{block:Photoset}
+				<div class="photoset inner">
+					{Photoset-700}
+					{block:Caption}{Caption}{/block:Caption}
+			{/block:Photoset}
+
+			{block:Quote}
+				<div class="quote inner">
+					<blockquote>{Quote}</blockquote>
+					{block:Source}<cite> {Source} </cite>{/block:Source}
+			{block:Quote}
+
+			{block:Link}
+				<div class="link inner">
+					<h1 class="title"><a href="{URL}">{Name}</a></h1>
+					{block:Description}{Description}{/block:Description}
+			{/block:Link}
+
+			{block:Chat}
+				<div class="chat inner">
+					<ul>
+						{block:Lines}<li class="{Alt}">
+							<p>{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</p>
+						</li>{/block:Lines}
+					</ul>
+			{/block:Chat}
+
+			{block:Audio}
+				<div class="audio inner">
+					{block:TrackName}<h1 class="title"><a href="{Permalink}">{TrackName}</a></h1>{/block:TrackName}
+					{block:AlbumArt}<img src="{AlbumArtURL}" width="500" height="500">{/block:AlbumArt}
+					{AudioPlayerBlack}
+					{block:Caption}{Caption}{/block:Caption}
+			{/block:Audio}
+
+			{block:Video}
+				<div class="video inner">
+					{Video-700}
+					{block:Caption}{Caption}{/block:Caption}
+			{/block:Video}
+
+			{block:Answer}
+				<div class="answer inner">
+					<h1 class="title">{Question}</h1>
+					<div class="user"><img src="{AskerPortraitURL-96}"></p></div>
+					{Answer}
+			{/block:Answer}
+				</div>
+
+			{block:Date}
+				<footer class="metadata">
+					<ul class="index">
+						<li><a href="{Permalink}"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth} {Month} {Year}</time></a></li>
+
+						{block:NoteCount}<li><a class="notecount" href="{Permalink}#notes">{NoteCountWithLabel}</a></li>{/block:NoteCount}
+
+						{block:ContentSource}
+							<li><a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}</a></li>
+						{/block:ContentSource}
+					</ul>
+
+					{block:PermalinkPage}
+					{block:HasTags}
+					<ul class="tags">
+						{block:Tags}<li><a href="{TagURL}"></a></li>{/block:Tags}
+					</ul>
+					{/block:HasTags}
+
+					{block:PostNotes}
+					<div id="PostNotes">
+						{PostNotes}
+					</div>
+					{/block:PostNotes}
+					{/block:PermalinkPage}
+				</footer>
+			{/block:Date}
 		</article>
 		{/block:Posts}
 		{block:Pagination}
+		<nav id="pagination">
 			<ul>
 				{block:NextPage}<li><a href="{NextPage}">NextPage</a></li>{/block:NextPage}
 				{block:PreviousPage}<li><a href="{PreviousPage}">PreviousPage</a></li>{/block:PreviousPage}
 			</ul>
+		</nav>
 		{/block:Pagination}
 	</div>
 </body>
