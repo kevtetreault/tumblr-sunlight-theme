@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	{block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
+	<title>
+		{block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}
+	</title>
+
+	<link rel="shortcut icon" href="{Favicon}" />
+	<link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}">
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />
+
+	<style>
+		
+	</style>
+
+</head>
+
+<body>
+	<header id="masthead">
+		<img src="{PortraitURL-128">
+		<h1><a href="/" title="{lang:Home}">{Title}</a></h1>
+	</header>
+
+	<aside id="sidebar">
+		<div class="item">
+			<h2>Sidebar item</h2>
+			<p>Add in later.</p>
+		</div>
+	</aside>
+
+	<div id="content">
+		{block:Posts}
+		<article>
+			<!-- Post markup goes here -->
+		</article>
+		{/block:Posts}
+		{block:Pagination}
+			<ul>
+				{block:NextPage}<li><a href="{NextPage}">NextPage</a></li>{/block:NextPage}
+				{block:PreviousPage}<li><a href="{PreviousPage}">PreviousPage</a></li>{/block:PreviousPage}
+			</ul>
+		{/block:Pagination}
+	</div>
+</body>
+</html>
