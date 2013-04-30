@@ -1,0 +1,64 @@
+body {
+    background: #f3f5f5;
+    /* background: url('linear-gradient.png') 0 0 repeat-x; */
+    background: -webkit-linear-gradient(#f3f5f5, #ebebee);
+    background:    -moz-linear-gradient(#f3f5f5, #ebebee);
+    background:     -ms-linear-gradient(#f3f5f5, #ebebee);
+    background:      -o-linear-gradient(#f3f5f5, #ebebee);
+    background:         linear-gradient(#f3f5f5, #ebebee);
+    color: #333;
+    font-family: 'Gentium Book Basic', serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Open Sans', sans-serif;
+	text-transform: uppercase;
+}
+
+a {
+	color:#444;
+}
+
+	a:hover, a:visited {
+		color:#777;
+		text-decoration: underline;
+	}
+
+.inner {
+    display: inline-block;
+}
+
+#content {
+    margin-left: 5%;
+    width: 65%;
+}
+{block:IfHideSidebar}
+#content {
+    width: 90%;
+}
+
+#content article {
+    background: #fff;
+    margin-bottom: 5%;
+}
+	article .inner {
+	    display: inline-block;
+	    padding: 4%;
+	    width: 92%;
+	}
+
+#sidebar {
+    display: none;
+}
+{/block:IfHideSidebar}
+
+#sidebar {
+    float: right;
+    margin: 0 5%;
+    width: 20%;
+}
+.item {
+    margin-bottom: 15%;
+    background: #fff;
+    padding: 1% 5%;
+}
