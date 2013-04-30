@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	{block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
+    {block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
 	<title>
 		{block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}
 	</title>
@@ -9,23 +9,144 @@
 	<link rel="shortcut icon" href="{Favicon}" />
 	<link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}">
 	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <meta name="if:Search and description in sidebar" content="1"/>
+    <meta name="if:Following in sidebar" content="1"/>
+    <meta name="if:Likes in sidebar" content="1"/>
 
-	<style>
-		
-	</style>
+<style>
+
+body {
+    font: 1.1em/1.5em 'Gentium Book Basic', serif;
+    background: #f3f5f5;
+    /* background: url('linear-gradient.png') 0 0 repeat-x; */
+    background: -webkit-linear-gradient(#f3f5f5, #999);
+    background:    -moz-linear-gradient(#f3f5f5, #999);
+    background:     -ms-linear-gradient(#f3f5f5, #999);
+    background:      -o-linear-gradient(#f3f5f5, #999);
+    background:         linear-gradient(#f3f5f5, #999);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 1px 1px rgba(100, 89, 0, .8);
+}
+
+    h1#masthead a {
+        font-size: 1.4em;
+        color: rgba(255, 89, 0, .9);
+        letter-spacing: 20px;
+    }
+    
+    h1.title a {
+        font-size: 1.1em;
+        line-height: 1.5em;
+        margin: 15px 0;
+    }
+
+a {
+    color: rgba(255, 89, 0, 1);
+    text-decoration: none;
+}
+
+	a:hover, a:visited {
+		color: rgba(255, 113, 0, .9);
+		text-decoration: underline;
+        
+	}
+
+p {
+    color: #555;
+}
+.inner {
+    display: inline-block;
+    margin: 0 5%;
+    max-width: 700px;
+}
+
+#masthead {
+     margin-left: 5%;
+     width: 65%;
+}
+
+#content {
+    margin-left: 5%;
+    width: 65%;
+}
+{block:IfHideSidebar}
+#content {
+    width: 90%;
+}
+
+#content article {
+    background: #fff;
+    margin-bottom: 5%;
+}
+    article .inner {
+	    display: inline-block;
+	    padding: 4%;
+	    width: 92%;
+	}
+
+#sidebar {
+    display: none;
+}
+{/block:IfHideSidebar}
+
+#sidebar {
+    float: right;
+    margin: 0 5%;
+    width: 20%;
+}
+.item {
+    margin-bottom: 15%;
+    background: #fff;
+    padding: 1% 5%;
+}
+
+</style>
 
 </head>
 
 <body>
 	<header id="masthead">
-		<img src="{PortraitURL-128">
+		<!-- ><img src="{PortraitURL-128"> -->
 		<h1><a href="/" title="{lang:Home}">{Title}</a></h1>
+		<nav>
+			<ul>
+			    {block:HasPages}
+			    {block:Pages}
+			    <li> <a href="{URL}">{Label}</a></li>
+			    {/block:Pages}
+			    {/block:HasPages}
+			    {block:SubmissionsEnabled}
+			    <li> <a href="/submit">{SubmitLabel}</a></li>
+			    {/block:SubmissionsEnabled}
+			    {block:AskEnabled}
+			    <li> <a href="/ask">{AskLabel}</a></li>
+			    {/block:AskEnabled}
+			</ul>
+		</nav>
 	</header>
 
 	<aside id="sidebar">
 		<div class="item">
-			<h2>Sidebar item</h2>
-			<p>Add in later.</p>
+			<h2>These, too.</h2>
+            {block:IfSearchAndDescriptionInSidebar}
+            <div class="item">
+                {block:Description}
+                    <h2>{lang:About Me}</h2>
+                    <p>{Description}</p>
+                {block:Description}
+    
+    <form action="/search" method="get">
+        <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}"/>
+    </form>
+</div>
+{/block:IfSearchAndDescriptionInSidebar}
 		</div>
 	</aside>
 
