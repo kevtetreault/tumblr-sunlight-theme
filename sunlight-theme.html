@@ -67,6 +67,11 @@ p {
     max-width: 700px;
 }
 
+header {
+    width: 100%;
+    padding: 5px;
+}
+
 #masthead {
      margin-left: 5%;
      width: 65%;
@@ -112,145 +117,132 @@ p {
 </head>
 
 <body>
-	<header id="masthead">
-		<!-- ><img src="{PortraitURL-128"> -->
-		<h1><a href="/" title="{lang:Home}">{Title}</a></h1>
-		<nav>
-			<ul>
-			    {block:HasPages}
-			    {block:Pages}
-			    <li> <a href="{URL}">{Label}</a></li>
-			    {/block:Pages}
-			    {/block:HasPages}
-			    {block:SubmissionsEnabled}
-			    <li> <a href="/submit">{SubmitLabel}</a></li>
-			    {/block:SubmissionsEnabled}
-			    {block:AskEnabled}
-			    <li> <a href="/ask">{AskLabel}</a></li>
-			    {/block:AskEnabled}
-			</ul>
-		</nav>
-	</header>
+        <header id="masthead">
+            <h1><a href="/" title="{lang:Home}">{Title}</a></h1>
+        </header>
 
-	<aside id="sidebar">
-		<div class="item">
-			<h2>These, too.</h2>
-            {block:IfSearchAndDescriptionInSidebar}
-            <div class="item">
-                {block:Description}
-                    <h2>{lang:About Me}</h2>
-                    <p>{Description}</p>
-                {block:Description}
-    
-    <form action="/search" method="get">
-        <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}"/>
-    </form>
-</div>
-{/block:IfSearchAndDescriptionInSidebar}
-		</div>
-	</aside>
+        {block:Description}
+            <p id="description">{Description}</p>
+        {/block:Description}
 
-	<div id="content">
-		{block:Posts}
-		<article>
-			{block:Text}
-				<div class="text inner">
-				{block:Title}<h1 class="title"><a href="{Permalink}">{Title}</a></h1>{/block:Title}
-				{Body}
-			{block:Text}
+        <content>
+        <ol id="posts">
+            {block:Posts}
+                {block:Text}
+                    <li class="post text">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
 
-			{block:Photo}
-			<div class="photo inner">
-					{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="PhotoAlt" />{LinkCloseTag}
-					{block:Caption}{Caption}{/block:Caption}
-			{/block:Photo}
+                        {Body}
+                    </li>
+                {/block:Text}
 
-			{block:Photoset}
-				<div class="photoset inner">
-					{Photoset-700}
-					{block:Caption}{Caption}{/block:Caption}
-			{/block:Photoset}
+                {block:Photo}
+                    <li class="post photo">
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
 
-			{block:Quote}
-				<div class="quote inner">
-					<blockquote>{Quote}</blockquote>
-					{block:Source}<cite> {Source} </cite>{/block:Source}
-			{block:Quote}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Photo}
 
-			{block:Link}
-				<div class="link inner">
-					<h1 class="title"><a href="{URL}">{Name}</a></h1>
-					{block:Description}{Description}{/block:Description}
-			{/block:Link}
+                {block:Panorama}
+                    <li class="post panorama">
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}
 
-			{block:Chat}
-				<div class="chat inner">
-					<ul>
-						{block:Lines}<li class="{Alt}">
-							<p>{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</p>
-						</li>{/block:Lines}
-					</ul>
-			{/block:Chat}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Panorama}
 
-			{block:Audio}
-				<div class="audio inner">
-					{block:TrackName}<h1 class="title"><a href="{Permalink}">{TrackName}</a></h1>{/block:TrackName}
-					{block:AlbumArt}<img src="{AlbumArtURL}" width="500" height="500">{/block:AlbumArt}
-					{AudioPlayerBlack}
-					{block:Caption}{Caption}{/block:Caption}
-			{/block:Audio}
+                {block:Photoset}
+                    <li class="post photoset">
+                        {Photoset-500}
 
-			{block:Video}
-				<div class="video inner">
-					{Video-700}
-					{block:Caption}{Caption}{/block:Caption}
-			{/block:Video}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Photoset}
 
-			{block:Answer}
-				<div class="answer inner">
-					<h1 class="title">{Question}</h1>
-					<div class="user"><img src="{AskerPortraitURL-96}"></p></div>
-					{Answer}
-			{/block:Answer}
-				</div>
+                {block:Quote}
+                    <li class="post quote">
+                        "{Quote}"
 
-			{block:Date}
-				<footer class="metadata">
-					<ul class="index">
-						<li><a href="{Permalink}"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth} {Month} {Year}</time></a></li>
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </li>
+                {/block:Quote}
 
-						{block:NoteCount}<li><a class="notecount" href="{Permalink}#notes">{NoteCountWithLabel}</a></li>{/block:NoteCount}
+                {block:Link}
+                    <li class="post link">
+                        <a href="{URL}" class="link" {Target}>{Name}</a>
 
-						{block:ContentSource}
-							<li><a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}</a></li>
-						{/block:ContentSource}
-					</ul>
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </li>
+                {/block:Link}
 
-					{block:PermalinkPage}
-					{block:HasTags}
-					<ul class="tags">
-						{block:Tags}<li><a href="{TagURL}"></a></li>{/block:Tags}
-					</ul>
-					{/block:HasTags}
+                {block:Chat}
+                    <li class="post chat">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
 
-					{block:PostNotes}
-					<div id="PostNotes">
-						{PostNotes}
-					</div>
-					{/block:PostNotes}
-					{/block:PermalinkPage}
-				</footer>
-			{/block:Date}
-		</article>
-		{/block:Posts}
-		{block:Pagination}
-		<nav id="pagination">
-			<ul>
-				{block:NextPage}<li><a href="{NextPage}">NextPage</a></li>{/block:NextPage}
-				{block:PreviousPage}<li><a href="{PreviousPage}">PreviousPage</a></li>{/block:PreviousPage}
-			</ul>
-		</nav>
-		{/block:Pagination}
-	</div>
-</body>
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}
+
+                                    {Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </li>
+                {/block:Chat}
+
+                {block:Video}
+                    <li class="post video">
+                        {Video-500}
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Video}
+
+                {block:Audio}
+                    <li class="post audio">
+                        {AudioPlayerBlack}
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Audio}
+            {/block:Posts}
+        </ol>
+        </content>
+
+        <p id="footer">
+            {block:PreviousPage}
+                <a href="{PreviousPage}">&#171; Previous</a>
+            {/block:PreviousPage}
+
+            {block:NextPage}
+                <a href="{NextPage}">Next &#187;</a>
+            {/block:NextPage}
+
+            <a href="/archive">Archive</a>
+        </p>
+    </body>
 </html>
