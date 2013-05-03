@@ -2,13 +2,13 @@
 <html>
 <head>
     {block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
-	<title>
-		{block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}
-	</title>
+    <title>
+        {block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}
+    </title>
 
-	<link rel="shortcut icon" href="{Favicon}" />
-	<link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}">
-	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />
+    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}">
+    <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <meta name="if:Search and description in sidebar" content="1"/>
@@ -52,11 +52,11 @@ a {
     text-decoration: none;
 }
 
-	a:hover, a:visited {
-		color: rgba(255, 113, 0, .9);
-		text-decoration: underline;
+    a:hover, a:visited {
+        color: rgba(255, 113, 0, .9);
+        text-decoration: underline;
         
-	}
+    }
 
 p {
     color: #555;
@@ -69,42 +69,50 @@ p {
 
 header {
     width: 100%;
-    padding: 5px;
 }
 
 #masthead {
-     margin-left: 5%;
      width: 65%;
 }
 
-#content {
+content {
     margin-left: 5%;
-    width: 65%;
-}
-{block:IfHideSidebar}
-#content {
-    width: 90%;
+    width: 100%;
 }
 
-#content article {
+content article {
     background: #fff;
     margin-bottom: 5%;
 }
     article .inner {
-	    display: inline-block;
-	    padding: 4%;
-	    width: 92%;
-	}
+        display: inline-block;
+        padding: 4%;
+        width: 92%;
+    }
+    
+/* posts */
+    
+ul#posts {
+    list-style-type: none;
+}
+
+ul#posts li {
+    margin-bottom: 21px;
+    max-width: 500px;
+}
+
+li.post.photo img{
+    border: 11px solid rgba(0, 0, 0, .2);
+}
 
 #sidebar {
     display: none;
 }
-{/block:IfHideSidebar}
 
 #sidebar {
     float: right;
-    margin: 0 5%;
-    width: 20%;
+    /* : 0 5%; 
+    width: 20%; */
 }
 .item {
     margin-bottom: 15%;
@@ -126,7 +134,7 @@ header {
         {/block:Description}
 
         <content>
-        <ol id="posts">
+        <ul id="posts">
             {block:Posts}
                 {block:Text}
                     <li class="post text">
@@ -230,7 +238,7 @@ header {
                     </li>
                 {/block:Audio}
             {/block:Posts}
-        </ol>
+        </ul>
         </content>
 
         <p id="footer">
