@@ -9,6 +9,7 @@ Posts can come from Twitter, Instagram as well as Tumblr itself.
 
 Goals:
 
-- Have all posts back up to Evernote (IFTTT?)
+✔ Have all posts back up to Evernote (IFTTT?)
+    Done. IFTTT works.
 - Responsive theme
 - Easy separation of personal work and everything else
